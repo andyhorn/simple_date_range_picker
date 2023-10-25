@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_date_range_picker/src/extensions/date_time_extensions.dart';
 import 'package:simple_date_range_picker/src/selection_type.dart';
+import 'package:simple_date_range_picker/src/widgets/date_item.dart';
 import 'package:simple_date_range_picker/src/widgets/month_title.dart';
 
 class SimpleDateRangePicker extends StatefulWidget {
@@ -226,7 +227,7 @@ class _MonthDisplay extends StatelessWidget {
             calendarIndex - firstDayIndex + 1,
           );
 
-          return _DateItem(
+          return DateItem(
             date: calendarDate,
             selected: selectedDates.contains(calendarDate),
             onSelected: () => onSelected(calendarDate),
@@ -275,89 +276,5 @@ class _MonthDisplay extends StatelessWidget {
     }
 
     return SelectionType.middle;
-  }
-}
-
-class _DateItem extends StatefulWidget {
-  const _DateItem({
-    required this.date,
-    required this.selected,
-    required this.type,
-    required this.onSelected,
-  });
-
-  final DateTime date;
-  final bool selected;
-  final SelectionType type;
-  final VoidCallback onSelected;
-
-  @override
-  State<_DateItem> createState() => __DateItemState();
-}
-
-class __DateItemState extends State<_DateItem> {
-  var hovered = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        onEnter: (_) => setState(() => hovered = true),
-        onExit: (_) => setState(() => hovered = false),
-        child: GestureDetector(
-          onTap: () => widget.onSelected(),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.horizontal(
-                left: switch (widget.type) {
-                  SelectionType.none => Radius.zero,
-                  SelectionType.end => Radius.zero,
-                  SelectionType.middle => Radius.zero,
-                  SelectionType.single => const Radius.circular(4),
-                  SelectionType.start => const Radius.circular(4),
-                },
-                right: switch (widget.type) {
-                  SelectionType.none => Radius.zero,
-                  SelectionType.end => const Radius.circular(4),
-                  SelectionType.middle => Radius.zero,
-                  SelectionType.single => const Radius.circular(4),
-                  SelectionType.start => Radius.zero,
-                },
-              ),
-              color: _getColor(),
-            ),
-            child: Center(
-              child: Text('${widget.date.day}', textAlign: TextAlign.center),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Color? _getColor() {
-    const boundaryOpacity = 0.3;
-    const hoveredOpacity = 0.4;
-    const selectedOpacity = 0.2;
-
-    return switch (widget.type) {
-      SelectionType.none => hovered
-          ? Theme.of(context).colorScheme.primary.withOpacity(hoveredOpacity)
-          : null,
-      SelectionType.end => Theme.of(context).colorScheme.primary.withOpacity(
-            hovered ? hoveredOpacity : boundaryOpacity,
-          ),
-      SelectionType.middle => Theme.of(context).colorScheme.primary.withOpacity(
-            hovered ? hoveredOpacity : selectedOpacity,
-          ),
-      SelectionType.single => Theme.of(context).colorScheme.primary.withOpacity(
-            hovered ? hoveredOpacity : boundaryOpacity,
-          ),
-      SelectionType.start => Theme.of(context).colorScheme.primary.withOpacity(
-            hovered ? hoveredOpacity : boundaryOpacity,
-          ),
-    };
   }
 }
