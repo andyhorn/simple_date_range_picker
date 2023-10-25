@@ -1,39 +1,49 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# SimpleDateRangePicker
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A simple, stylish `DateTimeRange` picker component for Flutter.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+### 0.0.1
+
+This initial version is limited in customization, but it does provide a simple interface for selecting a date range. 
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Install the package by adding the following to your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  simple_date_range_picker: ^0.0.1
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Import the package into your project:
 
 ```dart
-const like = 'sample';
+import 'package:simple_date_range_picker/simple_date_range_picker.dart';
 ```
 
-## Additional information
+Use the `SimpleDateRangePicker` widget to display the picker as an in-line widget:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+SimpleDateRangePicker(
+  onChanged: (dateRange) => setState(() => selectedDates = dateRange),
+),
+```
+
+Or, use `showSimpleDateRangePickerDialog` to display the picker as a modal dialog:
+
+```dart
+final dateRange = await showSimpleDateRangePickerDialog(context);
+```
+
+## Roadmap
+
+Additional features planned for the future include:
+
+* Customizable colors, borders, and TextStyles for the picker
+* Customizable colors, border, TextStyles, and buttons for the dialog
+* Date validation - determine which dates are selectable
+* Custom initial month view - specify which month to display first
