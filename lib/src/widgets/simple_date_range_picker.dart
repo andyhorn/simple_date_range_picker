@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_date_range_picker/src/extensions/date_time_extensions.dart';
+import 'package:simple_date_range_picker/src/selection_type.dart';
 import 'package:simple_date_range_picker/src/widgets/month_title.dart';
 
 class SimpleDateRangePicker extends StatefulWidget {
@@ -275,14 +276,6 @@ class _MonthDisplay extends StatelessWidget {
 
     return SelectionType.middle;
   }
-}
-
-enum SelectionType {
-  none,
-  start,
-  middle,
-  end,
-  single,
 }
 
 class _DateItem extends StatefulWidget {
