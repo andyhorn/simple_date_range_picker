@@ -51,18 +51,8 @@ class _DemoPageState extends State<DemoPage> {
             const Text('In-line date range picker'),
             const SizedBox(height: 25),
             Flexible(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SimpleDateRangePicker(
-                    onChanged: (dates) =>
-                        setState(() => selectedDateRange = dates),
-                  ),
-                ),
+              child: SimpleDateRangePicker(
+                onChanged: (dates) => setState(() => selectedDateRange = dates),
               ),
             ),
             const SizedBox(height: 25),
