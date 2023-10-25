@@ -94,7 +94,11 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
         MonthGrid(
           maxWidth: widget.width,
           month: currentMonth,
-          selectedDates: selectedDates,
+          selectedDates: {
+            ...selectedDates,
+            if (startDate != null) startDate!,
+            if (endDate != null) endDate!,
+          }.toList(),
           onSelected: _onSelected,
         ),
         const SizedBox(height: 15),
@@ -143,15 +147,8 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
     }
 
     if (startDate != null && endDate != null) {
-      selectedDates = _getDateRange(
-        start: startDate!,
-        end: endDate!,
-      );
-    } else if (startDate != null) {
-      selectedDates = [startDate!];
-    } else if (endDate != null) {
-      selectedDates = [endDate!];
-    } else {
+      selectedDates = _getDateRange(start: startDate!, end: endDate!);
+    } else if (selectedDates.isNotEmpty) {
       selectedDates = const [];
     }
 
