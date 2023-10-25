@@ -1,12 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:simple_date_range_picker/simple_date_range_picker.dart';
 
 void main() {
-  test('adds one to input values', () {
-    final calculator = Calculator();
-    expect(calculator.addOne(2), 3);
-    expect(calculator.addOne(-7), -6);
-    expect(calculator.addOne(0), 1);
+  testWidgets('$SimpleDateRangePicker', (widgetTester) async {
+    await widgetTester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: SimpleDateRangePicker(
+              onChanged: (dates) {},
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(SimpleDateRangePicker), findsOneWidget);
   });
 }
