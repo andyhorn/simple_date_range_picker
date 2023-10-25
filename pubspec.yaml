@@ -1,10 +1,10 @@
 name: simple_date_range_picker
-description: A new Flutter package project.
+description: A simple, stylish date range picker component for Flutter.
 version: 0.0.1
-homepage:
+homepage: "https://www.github.com/andyhorn/simple_date_range_picker"
 
 environment:
-  sdk: '>=3.1.4 <4.0.0'
+  sdk: ">=3.1.4 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
