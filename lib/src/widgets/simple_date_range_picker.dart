@@ -132,6 +132,9 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
     } else if (startDate != null && endDate != null) {
       endDate = null;
       startDate = date;
+    } else if (endDate != null && date.isAfter(endDate!)) {
+      startDate = endDate;
+      endDate = date;
     } else if (startDate != null && date.isBefore(startDate!)) {
       startDate = date;
     } else if (startDate != null && endDate == null) {
