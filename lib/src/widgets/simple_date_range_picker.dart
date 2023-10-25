@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_date_range_picker/src/extensions/date_time_extensions.dart';
 
-class AppDateRangePicker extends StatefulWidget {
-  const AppDateRangePicker({
+class SimpleDateRangePicker extends StatefulWidget {
+  const SimpleDateRangePicker({
     super.key,
     required this.onChanged,
     this.initialDateRange,
@@ -16,10 +16,10 @@ class AppDateRangePicker extends StatefulWidget {
   static const _dimension = 300.0;
 
   @override
-  State<AppDateRangePicker> createState() => _AppDateRangePickerState();
+  State<SimpleDateRangePicker> createState() => _SimpleDateRangePickerState();
 }
 
-class _AppDateRangePickerState extends State<AppDateRangePicker> {
+class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
   late List<DateTime> _selectedDates;
   late DateTime currentMonth;
   DateTime? startDate;
@@ -69,7 +69,7 @@ class _AppDateRangePickerState extends State<AppDateRangePicker> {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-          width: AppDateRangePicker._dimension,
+          width: SimpleDateRangePicker._dimension,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -208,7 +208,7 @@ class _MonthDisplay extends StatelessWidget {
 
     return SizedBox(
       width: min(
-        AppDateRangePicker._dimension,
+        SimpleDateRangePicker._dimension,
         MediaQuery.sizeOf(context).width * 0.75,
       ),
       child: GridView.builder(
