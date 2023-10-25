@@ -23,10 +23,10 @@ class DateRangeLabel extends StatelessWidget {
             style: Theme.of(context).textTheme.labelLarge,
           ),
         ],
+        if (startDate != null && endDate != null) ...[
+          const Text(' - '),
+        ],
         if (endDate != null) ...[
-          const SizedBox(width: 5),
-          const Text('-'),
-          const SizedBox(width: 5),
           Text(
             DateFormat.yMMMMd().format(endDate!),
             style: Theme.of(context).textTheme.labelLarge,
