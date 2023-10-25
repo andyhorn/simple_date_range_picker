@@ -3,20 +3,100 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:simple_date_range_picker/simple_date_range_picker.dart';
 
+class TestWrapper extends StatelessWidget {
+  const TestWrapper({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: child,
+        ),
+      ),
+    );
+  }
+}
+
 void main() {
-  testWidgets('$SimpleDateRangePicker', (widgetTester) async {
+  testWidgets('smoke test', (widgetTester) async {
     await widgetTester.pumpWidget(
-      MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: SimpleDateRangePicker(
-              onChanged: (dates) {},
-            ),
+      TestWrapper(
+        child: SimpleDateRangePicker(onChanged: (dates) {}),
+      ),
+    );
+
+    expect(find.byType(SimpleDateRangePicker), findsOneWidget);
+  });
+
+  testWidgets('Displays month title', (widgetTester) async {
+    await widgetTester.pumpWidget(
+      TestWrapper(
+        child: SimpleDateRangePicker(
+          onChanged: (dates) {},
+          initialDateRange: DateTimeRange(
+            start: DateTime(2023, 10, 1),
+            end: DateTime(2023, 10, 5),
           ),
         ),
       ),
     );
 
-    expect(find.byType(SimpleDateRangePicker), findsOneWidget);
+    expect(find.text('October 2023'), findsOneWidget);
+  });
+
+  testWidgets('Displays date range label', (widgetTester) async {
+    await widgetTester.pumpWidget(
+      TestWrapper(
+        child: SimpleDateRangePicker(
+          onChanged: (dates) {},
+          initialDateRange: DateTimeRange(
+            start: DateTime(2023, 10, 1),
+            end: DateTime(2023, 10, 5),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('October 1, 2023'), findsOneWidget);
+    expect(find.text('October 5, 2023'), findsOneWidget);
+  });
+
+  testWidgets('Emits selected date range', (widgetTester) async {
+    DateTimeRange? dateRange;
+
+    await widgetTester.pumpWidget(
+      TestWrapper(
+        child: SimpleDateRangePicker(
+          onChanged: (dates) => dateRange = dates,
+        ),
+      ),
+    );
+
+    await widgetTester.tap(find.text('1'));
+    await widgetTester.pump();
+
+    await widgetTester.tap(find.text('5'));
+    await widgetTester.pump();
+
+    expect(
+      dateRange,
+      equals(
+        DateTimeRange(
+          start: DateTime(
+            DateTime.now().year,
+            DateTime.now().month,
+            1,
+          ),
+          end: DateTime(
+            DateTime.now().year,
+            DateTime.now().month,
+            5,
+          ),
+        ),
+      ),
+    );
   });
 }

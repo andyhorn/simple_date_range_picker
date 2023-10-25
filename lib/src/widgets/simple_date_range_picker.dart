@@ -59,6 +59,9 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
         widget.initialDateRange!.start.month,
         1,
       );
+
+      startDate = widget.initialDateRange!.start;
+      endDate = widget.initialDateRange!.end;
     } else {
       selectedDates = const [];
       currentMonth = DateTime.now();
