@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:simple_date_range_picker/src/constants/constants.dart';
 import 'package:simple_date_range_picker/src/extensions/date_time_extensions.dart';
+import 'package:simple_date_range_picker/src/widgets/date_range_label.dart';
 import 'package:simple_date_range_picker/src/widgets/month_grid.dart';
 import 'package:simple_date_range_picker/src/widgets/month_title.dart';
 
@@ -95,26 +95,9 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
           onSelected: _onSelected,
         ),
         const SizedBox(height: 15),
-        Wrap(
-          alignment: WrapAlignment.center,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: [
-            if (selectedDates.isNotEmpty) ...[
-              Text(
-                DateFormat.yMMMMd().format(selectedDates.first),
-                style: Theme.of(context).textTheme.labelLarge,
-              ),
-              if (selectedDates.length > 1) ...[
-                const SizedBox(width: 5),
-                const Text('-'),
-                const SizedBox(width: 5),
-                Text(
-                  DateFormat.yMMMMd().format(selectedDates.last),
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-              ],
-            ],
-          ],
+        DateRangeLabel(
+          endDate: endDate,
+          startDate: startDate,
         ),
       ],
     );
