@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:simple_date_range_picker/simple_date_range_picker.dart';
 
 Future<DateTimeRange?> showSimpleDateRangePickerDialog(
-  BuildContext context, {
-  List<Widget>? actions,
-}) async {
-  DateTimeRange? dateRange;
-
-  await showDialog(
+  BuildContext context,
+) async {
+  return await showDialog(
     context: context,
     builder: (context) {
+      DateTimeRange? dateRange;
+
       return Dialog.fullscreen(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -20,16 +19,23 @@ Future<DateTimeRange?> showSimpleDateRangePickerDialog(
               SimpleDateRangePicker(
                 onChanged: (dates) => dateRange = dates,
               ),
-              if (actions != null) ...[
-                const SizedBox(height: 25),
-                ...actions,
-              ],
+              const SizedBox(height: 25),
+              ButtonBar(
+                children: [
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context, null),
+                    child: const Text('Cancel'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context, dateRange),
+                    child: const Text('OK'),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
       );
     },
   );
-
-  return dateRange;
 }
