@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_date_range_picker/src/extensions/date_time_extensions.dart';
+import 'package:simple_date_range_picker/src/widgets/month_title.dart';
 
 class SimpleDateRangePicker extends StatefulWidget {
   const SimpleDateRangePicker({
@@ -83,7 +84,7 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
                   ),
                 ),
               ),
-              _MonthTitle(month: currentMonth),
+              MonthTitle(month: currentMonth),
               IconButton(
                 icon: const Icon(Icons.chevron_right),
                 onPressed: () => setState(
@@ -173,20 +174,6 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
     }
 
     return dates;
-  }
-}
-
-class _MonthTitle extends StatelessWidget {
-  const _MonthTitle({required this.month});
-
-  final DateTime month;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      DateFormat.yMMMM().format(month),
-      style: Theme.of(context).textTheme.titleMedium,
-    );
   }
 }
 
