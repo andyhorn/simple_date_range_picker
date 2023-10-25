@@ -42,12 +42,14 @@ class _DemoPageState extends State<DemoPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            if (selectedDateRange != null) ...[
+            if (selectedDateRange == null) ...[
+              const Text('No date range selected'),
+            ] else ...[
               Text(
                 'Selected Date Range: ${DateFormat.yMMMd().format(selectedDateRange!.start)} - ${DateFormat.yMMMd().format(selectedDateRange!.end)}',
               ),
-              const SizedBox(height: 50),
             ],
+            const SizedBox(height: 50),
             const Text('In-line date range picker'),
             const SizedBox(height: 25),
             Flexible(
