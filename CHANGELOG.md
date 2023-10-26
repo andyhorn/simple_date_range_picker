@@ -1,3 +1,8 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+Initial release
+
+* Basic functionality
+  * Select a range of dates
+  * Inline widget
+  * Dialog
