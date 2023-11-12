@@ -9,6 +9,8 @@ Future<DateTimeRange?> showSimpleDateRangePickerDialog(
   ShapeBorder? shape,
   ButtonStyle? cancelButtonStyle,
   ButtonStyle? confirmButtonStyle,
+  String cancelLabel = 'Cancel',
+  String confirmLabel = 'OK',
 }) async {
   return await showDialog(
     context: context,
@@ -36,12 +38,12 @@ Future<DateTimeRange?> showSimpleDateRangePickerDialog(
                     ElevatedButton(
                       style: cancelButtonStyle,
                       onPressed: () => Navigator.pop(context, null),
-                      child: const Text('Cancel'),
+                      child: Text(cancelLabel),
                     ),
                     ElevatedButton(
                       style: confirmButtonStyle,
                       onPressed: () => Navigator.pop(context, dateRange),
-                      child: const Text('OK'),
+                      child: Text(confirmLabel),
                     ),
                   ],
                 ),

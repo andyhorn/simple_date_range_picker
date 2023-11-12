@@ -101,6 +101,8 @@ class _DemoPageState extends State<DemoPage> {
                       backgroundColor: Colors.white,
                     ),
                   ),
+                  cancelLabel: 'Discard',
+                  confirmLabel: 'Save',
                 );
 
                 if (dates != null) {
