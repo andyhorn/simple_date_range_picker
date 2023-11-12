@@ -98,7 +98,7 @@ class _DemoPageState extends State<DemoPage> {
                   ),
                   style: SimpleDateRangePickerStyle(
                     colors: const SimpleDateRangePickerColors(
-                      backgroundColor: Colors.white,
+                      backgroundColor: Colors.blue,
                     ),
                     monthTitleTextStyle: Theme.of(context).textTheme.bodyLarge,
                     weekdayTextStyle: const TextStyle(
@@ -110,6 +110,7 @@ class _DemoPageState extends State<DemoPage> {
                       decoration: TextDecoration.underline,
                       fontSize: 22,
                     ),
+                    activeItemRadius: const Radius.circular(12.0),
                   ),
                   cancelLabel: 'Discard',
                   confirmLabel: 'Save',

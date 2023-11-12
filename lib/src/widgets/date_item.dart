@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_date_range_picker/simple_date_range_picker.dart';
+import 'package:simple_date_range_picker/src/constants/constants.dart';
 import 'package:simple_date_range_picker/src/selection_type.dart';
 
 class DateItem extends StatefulWidget {
@@ -23,13 +24,15 @@ class DateItem extends StatefulWidget {
 }
 
 class _DateItemState extends State<DateItem> {
-  static const radius = Radius.circular(4);
-
   var hovered = false;
 
   SimpleDateRangePickerColors get colors {
     return widget.style?.colors ??
         SimpleDateRangePickerStyle.defaults(context).colors!;
+  }
+
+  Radius get radius {
+    return widget.style?.activeItemRadius ?? Constants.defaultDateItemRadius;
   }
 
   @override

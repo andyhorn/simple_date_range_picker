@@ -7,4 +7,5 @@ class Constants {
   static final ShapeBorder defaultDialogShape = RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(8),
   );
+  static const Radius defaultDateItemRadius = Radius.circular(4.0);
 }
