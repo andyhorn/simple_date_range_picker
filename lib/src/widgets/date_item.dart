@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_date_range_picker/simple_date_range_picker.dart';
 import 'package:simple_date_range_picker/src/selection_type.dart';
 
 class DateItem extends StatefulWidget {
@@ -8,24 +9,28 @@ class DateItem extends StatefulWidget {
     required this.selected,
     required this.type,
     required this.onSelected,
+    this.style,
   });
 
   final DateTime date;
   final bool selected;
   final SelectionType type;
   final VoidCallback onSelected;
+  final SimpleDateRangePickerStyle? style;
 
   @override
   State<DateItem> createState() => _DateItemState();
 }
 
 class _DateItemState extends State<DateItem> {
-  static const boundaryOpacity = 0.3;
-  static const hoveredOpacity = 0.4;
-  static const selectedOpacity = 0.2;
   static const radius = Radius.circular(4);
 
   var hovered = false;
+
+  SimpleDateRangePickerColors get colors {
+    return widget.style?.colors ??
+        SimpleDateRangePickerStyle.defaults(context).colors!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,20 +45,8 @@ class _DateItemState extends State<DateItem> {
           child: DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.horizontal(
-                left: switch (widget.type) {
-                  SelectionType.none => Radius.zero,
-                  SelectionType.end => Radius.zero,
-                  SelectionType.middle => Radius.zero,
-                  SelectionType.single => radius,
-                  SelectionType.start => radius,
-                },
-                right: switch (widget.type) {
-                  SelectionType.none => Radius.zero,
-                  SelectionType.end => radius,
-                  SelectionType.middle => Radius.zero,
-                  SelectionType.single => radius,
-                  SelectionType.start => Radius.zero,
-                },
+                left: _getLeftBorderRadius(),
+                right: _getRightBorderRadius(),
               ),
               color: _getColor(),
             ),
@@ -70,24 +63,39 @@ class _DateItemState extends State<DateItem> {
   }
 
   Color? _getColor() {
-    final baseColor = Theme.of(context).colorScheme.primary;
+    return colors.getColor(
+      isSelected: widget.type != SelectionType.none,
+      isHovered: hovered,
+      isStartOrEndDate: widget.type == SelectionType.start ||
+          widget.type == SelectionType.end,
+    );
+  }
 
-    switch (widget.type) {
-      // add color if hovered, otherwise no color
-      case SelectionType.none:
-        return hovered ? baseColor.withOpacity(hoveredOpacity) : null;
-      // use the "selected" opacity when not hovered
-      case SelectionType.middle:
-        return baseColor.withOpacity(
-          hovered ? hoveredOpacity : selectedOpacity,
-        );
-      // use the "boundary" opacity when not hovered
-      case SelectionType.end:
-      case SelectionType.start:
-      case SelectionType.single:
-        return baseColor.withOpacity(
-          hovered ? hoveredOpacity : boundaryOpacity,
-        );
+  Radius _getRightBorderRadius() {
+    if (hovered) {
+      return radius;
     }
+
+    return switch (widget.type) {
+      SelectionType.none => Radius.zero,
+      SelectionType.end => radius,
+      SelectionType.middle => Radius.zero,
+      SelectionType.single => radius,
+      SelectionType.start => Radius.zero,
+    };
+  }
+
+  Radius _getLeftBorderRadius() {
+    if (hovered) {
+      return radius;
+    }
+
+    return switch (widget.type) {
+      SelectionType.none => Radius.zero,
+      SelectionType.end => Radius.zero,
+      SelectionType.middle => Radius.zero,
+      SelectionType.single => radius,
+      SelectionType.start => radius,
+    };
   }
 }

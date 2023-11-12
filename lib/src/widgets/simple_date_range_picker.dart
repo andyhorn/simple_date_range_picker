@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_date_range_picker/simple_date_range_picker.dart';
 import 'package:simple_date_range_picker/src/constants/constants.dart';
 import 'package:simple_date_range_picker/src/extensions/date_time_extensions.dart';
 import 'package:simple_date_range_picker/src/widgets/month_grid.dart';
@@ -10,11 +11,13 @@ class SimpleDateRangePicker extends StatefulWidget {
     required this.onChanged,
     this.initialDateRange,
     this.width = Constants.width,
+    this.style,
   });
 
   final DateTimeRange? initialDateRange;
   final ValueChanged<DateTimeRange?> onChanged;
   final double width;
+  final SimpleDateRangePickerStyle? style;
 
   @override
   State<SimpleDateRangePicker> createState() => _SimpleDateRangePickerState();
@@ -99,6 +102,7 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
             if (endDate != null) endDate!,
           }.toList(),
           onSelected: _onSelected,
+          style: widget.style,
         ),
       ],
     );

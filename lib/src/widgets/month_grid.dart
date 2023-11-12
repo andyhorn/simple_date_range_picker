@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:simple_date_range_picker/src/constants/constants.dart';
 import 'package:simple_date_range_picker/src/selection_type.dart';
 import 'package:simple_date_range_picker/src/widgets/date_item.dart';
+import 'package:simple_date_range_picker/src/style/simple_date_range_picker_style.dart';
 
 class MonthGrid extends StatelessWidget {
   const MonthGrid({
@@ -13,12 +14,14 @@ class MonthGrid extends StatelessWidget {
     required this.selectedDates,
     required this.onSelected,
     this.maxWidth = Constants.width,
+    this.style,
   });
 
   final DateTime month;
   final List<DateTime> selectedDates;
   final ValueChanged<DateTime> onSelected;
   final double maxWidth;
+  final SimpleDateRangePickerStyle? style;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +65,7 @@ class MonthGrid extends StatelessWidget {
             selected: selectedDates.contains(calendarDate),
             onSelected: () => onSelected(calendarDate),
             type: _getSelectionType(calendarDate),
+            style: style,
           );
         },
         itemCount: _getItemCount(),
