@@ -73,6 +73,26 @@ class _DemoPageState extends State<DemoPage> {
               },
               child: const Text('showSimpleDateRangePickerDialog'),
             ),
+            const SizedBox(height: 25),
+            ElevatedButton(
+              onPressed: () async {
+                final dates = await showSimpleDateRangePickerDialog(
+                  context,
+                  style: const SimpleDateRangePickerStyle(
+                    colors: SimpleDateRangePickerColors(
+                      backgroundColor: Colors.pink,
+                    ),
+                  ),
+                );
+
+                if (dates != null) {
+                  setState(() => selectedDateRange = dates);
+                }
+              },
+              child: const Text(
+                'showSimpleDateRangePickerDialog (Pink)',
+              ),
+            ),
           ],
         ),
       ),
