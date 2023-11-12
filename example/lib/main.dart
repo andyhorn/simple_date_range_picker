@@ -78,9 +78,27 @@ class _DemoPageState extends State<DemoPage> {
               onPressed: () async {
                 final dates = await showSimpleDateRangePickerDialog(
                   context,
+                  backgroundColor: Colors.amber,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                  ),
+                  cancelButtonStyle: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(0)),
+                      ),
+                    ),
+                  ),
+                  confirmButtonStyle: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(0)),
+                      ),
+                    ),
+                  ),
                   style: const SimpleDateRangePickerStyle(
                     colors: SimpleDateRangePickerColors(
-                      backgroundColor: Colors.pink,
+                      backgroundColor: Colors.white,
                     ),
                   ),
                 );
@@ -90,7 +108,7 @@ class _DemoPageState extends State<DemoPage> {
                 }
               },
               child: const Text(
-                'showSimpleDateRangePickerDialog (Pink)',
+                'showSimpleDateRangePickerDialog (Custom)',
               ),
             ),
           ],

@@ -5,6 +5,10 @@ import 'package:simple_date_range_picker/src/constants/constants.dart';
 Future<DateTimeRange?> showSimpleDateRangePickerDialog(
   BuildContext context, {
   SimpleDateRangePickerStyle? style,
+  Color? backgroundColor,
+  ShapeBorder? shape,
+  ButtonStyle? cancelButtonStyle,
+  ButtonStyle? confirmButtonStyle,
 }) async {
   return await showDialog(
     context: context,
@@ -12,6 +16,8 @@ Future<DateTimeRange?> showSimpleDateRangePickerDialog(
       DateTimeRange? dateRange;
 
       return Dialog(
+        backgroundColor: backgroundColor,
+        shape: shape ?? Constants.defaultDialogShape,
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: SizedBox(
@@ -28,10 +34,12 @@ Future<DateTimeRange?> showSimpleDateRangePickerDialog(
                 ButtonBar(
                   children: [
                     ElevatedButton(
+                      style: cancelButtonStyle,
                       onPressed: () => Navigator.pop(context, null),
                       child: const Text('Cancel'),
                     ),
                     ElevatedButton(
+                      style: confirmButtonStyle,
                       onPressed: () => Navigator.pop(context, dateRange),
                       child: const Text('OK'),
                     ),
