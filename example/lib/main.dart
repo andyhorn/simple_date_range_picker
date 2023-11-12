@@ -101,10 +101,15 @@ class _DemoPageState extends State<DemoPage> {
                       backgroundColor: Colors.white,
                     ),
                     monthTitleTextStyle: Theme.of(context).textTheme.bodyLarge,
-                    weekdayTextStyle:
-                        Theme.of(context).textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                    weekdayTextStyle: const TextStyle(
+                      fontFamily: 'Sans Serif',
+                      fontWeight: FontWeight.bold,
+                    ),
+                    dayTextStyle: const TextStyle(
+                      fontFamily: 'Serif',
+                      decoration: TextDecoration.underline,
+                      fontSize: 22,
+                    ),
                   ),
                   cancelLabel: 'Discard',
                   confirmLabel: 'Save',

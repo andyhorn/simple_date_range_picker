@@ -6,6 +6,7 @@ class SimpleDateRangePickerStyle {
     this.colors,
     this.monthTitleTextStyle,
     this.weekdayTextStyle,
+    this.dayTextStyle,
   });
 
   factory SimpleDateRangePickerStyle.defaults(BuildContext context) {
@@ -13,10 +14,12 @@ class SimpleDateRangePickerStyle {
       colors: SimpleDateRangePickerColors.defaults(context),
       monthTitleTextStyle: Theme.of(context).textTheme.titleMedium,
       weekdayTextStyle: Theme.of(context).textTheme.bodySmall,
+      dayTextStyle: Theme.of(context).textTheme.bodyMedium,
     );
   }
 
   final SimpleDateRangePickerColors? colors;
   final TextStyle? monthTitleTextStyle;
   final TextStyle? weekdayTextStyle;
+  final TextStyle? dayTextStyle;
 }

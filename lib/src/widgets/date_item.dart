@@ -54,6 +54,7 @@ class _DateItemState extends State<DateItem> {
               child: Text(
                 '${widget.date.day}',
                 textAlign: TextAlign.center,
+                style: widget.style?.dayTextStyle,
               ),
             ),
           ),
