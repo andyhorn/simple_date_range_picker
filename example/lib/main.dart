@@ -96,10 +96,11 @@ class _DemoPageState extends State<DemoPage> {
                       ),
                     ),
                   ),
-                  style: const SimpleDateRangePickerStyle(
-                    colors: SimpleDateRangePickerColors(
+                  style: SimpleDateRangePickerStyle(
+                    colors: const SimpleDateRangePickerColors(
                       backgroundColor: Colors.white,
                     ),
+                    monthTitleTextStyle: Theme.of(context).textTheme.bodyLarge,
                   ),
                   cancelLabel: 'Discard',
                   confirmLabel: 'Save',

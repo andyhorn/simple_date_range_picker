@@ -5,15 +5,17 @@ class MonthTitle extends StatelessWidget {
   const MonthTitle({
     super.key,
     required this.month,
+    this.textStyle,
   });
 
   final DateTime month;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       DateFormat.yMMMM().format(month),
-      style: Theme.of(context).textTheme.titleMedium,
+      style: textStyle ?? Theme.of(context).textTheme.titleMedium,
     );
   }
 }
