@@ -79,7 +79,7 @@ class _DemoPageState extends State<DemoPage> {
               onPressed: () async {
                 final dates = await showSimpleDateRangePickerDialog(
                   context,
-                  backgroundColor: Colors.amber,
+                  backgroundColor: Colors.green,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.zero,
                   ),
@@ -89,6 +89,12 @@ class _DemoPageState extends State<DemoPage> {
                         borderRadius: BorderRadius.all(Radius.circular(0)),
                       ),
                     ),
+                    backgroundColor: MaterialStatePropertyAll(
+                      Colors.red.shade500,
+                    ),
+                    foregroundColor: const MaterialStatePropertyAll(
+                      Colors.white,
+                    ),
                   ),
                   confirmButtonStyle: ButtonStyle(
                     shape: MaterialStateProperty.all(
@@ -96,23 +102,30 @@ class _DemoPageState extends State<DemoPage> {
                         borderRadius: BorderRadius.all(Radius.circular(0)),
                       ),
                     ),
+                    backgroundColor: MaterialStatePropertyAll(
+                      Colors.black12,
+                    ),
+                    foregroundColor: MaterialStatePropertyAll(
+                      Colors.white,
+                    ),
                   ),
                   style: SimpleDateRangePickerStyle(
                     colors: const SimpleDateRangePickerColors(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Colors.amber,
                       foregroundColor: Colors.black,
+                      boundaryOpacity: 0.8,
+                      hoveredOpacity: 0.9,
+                      selectedOpacity: 0.5,
                     ),
-                    monthTitleTextStyle: Theme.of(context).textTheme.bodyLarge,
+                    monthTitleTextStyle: Theme.of(context).textTheme.titleLarge,
                     weekdayTextStyle: const TextStyle(
-                      fontFamily: 'Sans Serif',
                       fontWeight: FontWeight.bold,
+                      fontSize: 20,
                     ),
                     dayTextStyle: const TextStyle(
-                      fontFamily: 'Serif',
-                      decoration: TextDecoration.underline,
-                      fontSize: 22,
+                      fontSize: 18,
                     ),
-                    activeItemRadius: const Radius.circular(12.0),
+                    activeItemRadius: Radius.zero,
                     previousIconButtonStyle: ButtonStyle(
                       shape: MaterialStateProperty.all(
                         const RoundedRectangleBorder(),
