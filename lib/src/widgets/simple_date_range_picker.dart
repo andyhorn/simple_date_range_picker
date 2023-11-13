@@ -90,6 +90,7 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
           }.toList(),
           onSelected: _onSelected,
           style: widget.style,
+          config: config,
         ),
       ],
     );
