@@ -51,13 +51,13 @@ class _DateItemState extends State<DateItem> {
                 left: _getLeftBorderRadius(),
                 right: _getRightBorderRadius(),
               ),
-              color: _getColor(),
+              color: _getBackgroundColor(),
             ),
             child: Center(
               child: Text(
                 '${widget.date.day}',
                 textAlign: TextAlign.center,
-                style: widget.style?.dayTextStyle,
+                style: _getTextStyle(),
               ),
             ),
           ),
@@ -66,13 +66,22 @@ class _DateItemState extends State<DateItem> {
     );
   }
 
-  Color? _getColor() {
-    return colors.getColor(
+  Color? _getBackgroundColor() {
+    return colors.getBackgroundColor(
       isSelected: widget.type != SelectionType.none,
       isHovered: hovered,
       isStartOrEndDate: widget.type == SelectionType.start ||
           widget.type == SelectionType.end,
     );
+  }
+
+  TextStyle _getTextStyle() {
+    final baseStyle = widget.style?.dayTextStyle ?? const TextStyle();
+
+    return switch (widget.type) {
+      SelectionType.none => baseStyle,
+      _ => baseStyle.copyWith(color: colors.foregroundColor),
+    };
   }
 
   Radius _getRightBorderRadius() {

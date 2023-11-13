@@ -58,6 +58,7 @@ class _DemoPageState extends State<DemoPage> {
                 style: const SimpleDateRangePickerStyle(
                   colors: SimpleDateRangePickerColors(
                     backgroundColor: Colors.pink,
+                    foregroundColor: Colors.white,
                   ),
                 ),
               ),
@@ -99,6 +100,7 @@ class _DemoPageState extends State<DemoPage> {
                   style: SimpleDateRangePickerStyle(
                     colors: const SimpleDateRangePickerColors(
                       backgroundColor: Colors.blue,
+                      foregroundColor: Colors.black,
                     ),
                     monthTitleTextStyle: Theme.of(context).textTheme.bodyLarge,
                     weekdayTextStyle: const TextStyle(

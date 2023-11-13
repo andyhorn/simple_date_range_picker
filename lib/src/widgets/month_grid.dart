@@ -44,7 +44,9 @@ class MonthGrid extends StatelessWidget {
               child: Text(
                 DateFormat.E().format(_getWeekday(index == 0 ? 7 : index)),
                 textAlign: TextAlign.center,
-                style: style?.weekdayTextStyle,
+                style: style?.weekdayTextStyle?.copyWith(
+                  color: style?.colors?.foregroundColor,
+                ),
               ),
             );
           }
