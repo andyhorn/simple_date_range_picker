@@ -1,3 +1,11 @@
+## 0.0.4
+
+Add behavior customization API.
+
+Use `SimpleDateRangePickerRange` or `SimpleDateRangePickerSingle` config classes to control whether the picker allows selecting a range of dates or a single date.
+
+Depending on which config class is used, the picker will return a `DateTimeRange?` or a `DateTime?`.
+
 ## 0.0.3
 
 Add styling customization API.
