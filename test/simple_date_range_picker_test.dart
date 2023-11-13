@@ -24,7 +24,12 @@ void main() {
   testWidgets('smoke test', (widgetTester) async {
     await widgetTester.pumpWidget(
       TestWrapper(
-        child: SimpleDateRangePicker(onChanged: (dates) {}),
+        child: SimpleDateRangePicker(
+          config: SimpleDateRangePickerRange(
+            initialDateRange: null,
+            onChanged: (dates) {},
+          ),
+        ),
       ),
     );
 
@@ -35,10 +40,12 @@ void main() {
     await widgetTester.pumpWidget(
       TestWrapper(
         child: SimpleDateRangePicker(
-          onChanged: (dates) {},
-          initialDateRange: DateTimeRange(
-            start: DateTime(2023, 10, 1),
-            end: DateTime(2023, 10, 5),
+          config: SimpleDateRangePickerRange(
+            onChanged: (dates) {},
+            initialDateRange: DateTimeRange(
+              start: DateTime(2023, 10, 1),
+              end: DateTime(2023, 10, 5),
+            ),
           ),
         ),
       ),
@@ -51,10 +58,12 @@ void main() {
     await widgetTester.pumpWidget(
       TestWrapper(
         child: SimpleDateRangePicker(
-          onChanged: (dates) {},
-          initialDateRange: DateTimeRange(
-            start: DateTime(2023, 10, 1),
-            end: DateTime(2023, 10, 5),
+          config: SimpleDateRangePickerRange(
+            onChanged: (dates) {},
+            initialDateRange: DateTimeRange(
+              start: DateTime(2023, 10, 1),
+              end: DateTime(2023, 10, 5),
+            ),
           ),
         ),
       ),
@@ -70,7 +79,10 @@ void main() {
     await widgetTester.pumpWidget(
       TestWrapper(
         child: SimpleDateRangePicker(
-          onChanged: (dates) => dateRange = dates,
+          config: SimpleDateRangePickerRange(
+            initialDateRange: null,
+            onChanged: (dates) => dateRange = dates,
+          ),
         ),
       ),
     );

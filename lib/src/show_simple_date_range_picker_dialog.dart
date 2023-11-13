@@ -4,6 +4,7 @@ import 'package:simple_date_range_picker/src/constants/constants.dart';
 
 Future<DateTimeRange?> showSimpleDateRangePickerDialog(
   BuildContext context, {
+  DateTimeRange? initialDateRange,
   SimpleDateRangePickerStyle? style,
   Color? backgroundColor,
   ShapeBorder? shape,
@@ -29,7 +30,10 @@ Future<DateTimeRange?> showSimpleDateRangePickerDialog(
               mainAxisSize: MainAxisSize.min,
               children: [
                 SimpleDateRangePicker(
-                  onChanged: (dates) => dateRange = dates,
+                  config: SimpleDateRangePickerRange(
+                    onChanged: (dates) => dateRange = dates,
+                    initialDateRange: initialDateRange,
+                  ),
                   style: style,
                 ),
                 const SizedBox(height: 25),

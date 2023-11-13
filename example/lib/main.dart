@@ -54,7 +54,12 @@ class _DemoPageState extends State<DemoPage> {
             const SizedBox(height: 25),
             Flexible(
               child: SimpleDateRangePicker(
-                onChanged: (dates) => setState(() => selectedDateRange = dates),
+                config: SimpleDateRangePickerRange(
+                  initialDateRange: null,
+                  onChanged: (dates) => setState(
+                    () => selectedDateRange = dates,
+                  ),
+                ),
                 style: const SimpleDateRangePickerStyle(
                   colors: SimpleDateRangePickerColors(
                     backgroundColor: Colors.pink,
