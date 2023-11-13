@@ -102,10 +102,10 @@ class _DemoPageState extends State<DemoPage> {
                         borderRadius: BorderRadius.all(Radius.circular(0)),
                       ),
                     ),
-                    backgroundColor: MaterialStatePropertyAll(
+                    backgroundColor: const MaterialStatePropertyAll(
                       Colors.black12,
                     ),
-                    foregroundColor: MaterialStatePropertyAll(
+                    foregroundColor: const MaterialStatePropertyAll(
                       Colors.white,
                     ),
                   ),
