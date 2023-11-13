@@ -36,6 +36,20 @@ class _DemoPageState extends State<DemoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          ElevatedButton(
+            child: const Text('showSimpleDateRangePickerDialog'),
+            onPressed: () async {
+              final newDates = await showSimpleDateRangePickerDialog(context);
+
+              if (newDates != null) {
+                setState(() => selectedDateRange = newDates);
+              }
+            },
+          ),
+        ],
+      ),
       body: SizedBox(
         width: double.infinity,
         child: Padding(
