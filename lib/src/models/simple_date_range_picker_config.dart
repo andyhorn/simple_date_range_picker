@@ -84,3 +84,34 @@ class SimpleDateRangePickerRange extends SimpleDateRangePickerConfig {
     return dates;
   }
 }
+
+class SimpleDateRangePickerSingle extends SimpleDateRangePickerConfig {
+  SimpleDateRangePickerSingle({
+    required this.initialDate,
+    required this.onChanged,
+  }) : _selectedDate = initialDate;
+
+  final DateTime? initialDate;
+  final ValueChanged<DateTime?> onChanged;
+  DateTime? _selectedDate;
+
+  @override
+  List<DateTime> get dates {
+    if (_selectedDate == null) {
+      return const [];
+    }
+
+    return [_selectedDate!];
+  }
+
+  @override
+  void onSelected(DateTime date) {
+    if (date == _selectedDate) {
+      _selectedDate = null;
+    } else {
+      _selectedDate = date;
+    }
+
+    onChanged(_selectedDate);
+  }
+}

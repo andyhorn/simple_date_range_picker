@@ -29,11 +29,22 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
     super.initState();
 
     return switch (config) {
-      SimpleDateRangePickerRange(initialDateRange: final dateRange) => () {
-          if (dateRange != null) {
+      SimpleDateRangePickerRange(:final initialDateRange) => () {
+          if (initialDateRange != null) {
             currentMonth = DateTime(
-              dateRange.start.year,
-              dateRange.start.month,
+              initialDateRange.start.year,
+              initialDateRange.start.month,
+              1,
+            );
+          } else {
+            currentMonth = DateTime.now();
+          }
+        }(),
+      SimpleDateRangePickerSingle(:final initialDate) => () {
+          if (initialDate != null) {
+            currentMonth = DateTime(
+              initialDate.year,
+              initialDate.month,
               1,
             );
           } else {
