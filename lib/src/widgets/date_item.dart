@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_date_range_picker/simple_date_range_picker.dart';
 import 'package:simple_date_range_picker/src/constants/constants.dart';
-import 'package:simple_date_range_picker/src/selection_type.dart';
+import 'package:simple_date_range_picker/src/date_selection_type.dart';
 
 class DateItem extends StatefulWidget {
   const DateItem({
@@ -15,7 +15,7 @@ class DateItem extends StatefulWidget {
 
   final DateTime date;
   final bool selected;
-  final SelectionType type;
+  final DateSelectionType type;
   final VoidCallback onSelected;
   final SimpleDateRangePickerStyle? style;
 
@@ -68,18 +68,22 @@ class _DateItemState extends State<DateItem> {
 
   Color? _getBackgroundColor() {
     return colors.getBackgroundColor(
-      isSelected: widget.type != SelectionType.none,
+      isSelected: widget.type != DateSelectionType.none,
       isHovered: hovered,
-      isStartOrEndDate: widget.type == SelectionType.start ||
-          widget.type == SelectionType.end,
+      isStartOrEndDate: widget.type == DateSelectionType.start ||
+          widget.type == DateSelectionType.end,
     );
   }
 
   TextStyle _getTextStyle() {
     final baseStyle = widget.style?.dayTextStyle ?? const TextStyle();
 
+    if (hovered) {
+      return baseStyle.copyWith(color: colors.foregroundColor);
+    }
+
     return switch (widget.type) {
-      SelectionType.none => baseStyle,
+      DateSelectionType.none => baseStyle,
       _ => baseStyle.copyWith(color: colors.foregroundColor),
     };
   }
@@ -90,11 +94,11 @@ class _DateItemState extends State<DateItem> {
     }
 
     return switch (widget.type) {
-      SelectionType.none => Radius.zero,
-      SelectionType.end => radius,
-      SelectionType.middle => Radius.zero,
-      SelectionType.single => radius,
-      SelectionType.start => Radius.zero,
+      DateSelectionType.none => Radius.zero,
+      DateSelectionType.end => radius,
+      DateSelectionType.middle => Radius.zero,
+      DateSelectionType.single => radius,
+      DateSelectionType.start => Radius.zero,
     };
   }
 
@@ -104,11 +108,11 @@ class _DateItemState extends State<DateItem> {
     }
 
     return switch (widget.type) {
-      SelectionType.none => Radius.zero,
-      SelectionType.end => Radius.zero,
-      SelectionType.middle => Radius.zero,
-      SelectionType.single => radius,
-      SelectionType.start => radius,
+      DateSelectionType.none => Radius.zero,
+      DateSelectionType.end => Radius.zero,
+      DateSelectionType.middle => Radius.zero,
+      DateSelectionType.single => radius,
+      DateSelectionType.start => radius,
     };
   }
 }

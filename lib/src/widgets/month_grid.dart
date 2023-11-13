@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:simple_date_range_picker/simple_date_range_picker.dart';
 import 'package:simple_date_range_picker/src/constants/constants.dart';
-import 'package:simple_date_range_picker/src/selection_type.dart';
+import 'package:simple_date_range_picker/src/date_selection_type.dart';
 import 'package:simple_date_range_picker/src/widgets/date_item.dart';
-import 'package:simple_date_range_picker/src/style/simple_date_range_picker_style.dart';
 
 class MonthGrid extends StatelessWidget {
   const MonthGrid({
@@ -13,6 +13,7 @@ class MonthGrid extends StatelessWidget {
     required this.month,
     required this.selectedDates,
     required this.onSelected,
+    required this.config,
     this.maxWidth = Constants.width,
     this.style,
   });
@@ -22,6 +23,7 @@ class MonthGrid extends StatelessWidget {
   final ValueChanged<DateTime> onSelected;
   final double maxWidth;
   final SimpleDateRangePickerStyle? style;
+  final SimpleDateRangePickerConfig config;
 
   @override
   Widget build(BuildContext context) {
@@ -95,23 +97,28 @@ class MonthGrid extends StatelessWidget {
     return date;
   }
 
-  SelectionType _getSelectionType(DateTime date) {
+  DateSelectionType _getSelectionType(DateTime date) {
     if (!selectedDates.contains(date)) {
-      return SelectionType.none;
+      return DateSelectionType.none;
     }
 
-    if (selectedDates.length == 1 && selectedDates.first == date) {
-      return SelectionType.single;
-    }
+    return switch (config) {
+      SimpleDateRangePickerRange() => () {
+          if (selectedDates.length == 1 && selectedDates.first == date) {
+            return DateSelectionType.single;
+          }
 
-    if (selectedDates.isNotEmpty && selectedDates.first == date) {
-      return SelectionType.start;
-    }
+          if (selectedDates.isNotEmpty && selectedDates.first == date) {
+            return DateSelectionType.start;
+          }
 
-    if (selectedDates.isNotEmpty && selectedDates.last == date) {
-      return SelectionType.end;
-    }
+          if (selectedDates.isNotEmpty && selectedDates.last == date) {
+            return DateSelectionType.end;
+          }
 
-    return SelectionType.middle;
+          return DateSelectionType.middle;
+        }(),
+      SimpleDateRangePickerSingle() => DateSelectionType.single,
+    };
   }
 }

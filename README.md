@@ -2,6 +2,8 @@
 
 A simple, stylish `DateTimeRange` picker component for Flutter.
 
+**Note:** This package is under active development and may change significantly between versions. Once a stable implementation is reached, the package will be bumped to version 1.0.0.
+
 ## Features
 
 * In-line widget for selecting a range of dates (`DateTimeRange`)
