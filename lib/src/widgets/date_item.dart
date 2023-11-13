@@ -78,6 +78,10 @@ class _DateItemState extends State<DateItem> {
   TextStyle _getTextStyle() {
     final baseStyle = widget.style?.dayTextStyle ?? const TextStyle();
 
+    if (hovered) {
+      return baseStyle.copyWith(color: colors.foregroundColor);
+    }
+
     return switch (widget.type) {
       DateSelectionType.none => baseStyle,
       _ => baseStyle.copyWith(color: colors.foregroundColor),
