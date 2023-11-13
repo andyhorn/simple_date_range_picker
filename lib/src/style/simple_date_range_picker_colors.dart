@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SimpleDateRangePickerColors {
-  static const _boundaryOpacity = 0.3;
-  static const _hoveredOpacity = 0.4;
-  static const _selectedOpacity = 0.2;
+  static const _boundaryOpacity = 0.65;
+  static const _hoveredOpacity = 0.8;
+  static const _selectedOpacity = 0.5;
 
   const SimpleDateRangePickerColors({
     required this.backgroundColor,
