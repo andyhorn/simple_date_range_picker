@@ -1,4 +1,4 @@
-enum SelectionType {
+enum DateSelectionType {
   none,
   start,
   middle,

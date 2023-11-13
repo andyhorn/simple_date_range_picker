@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_date_range_picker/src/constants/constants.dart';
-import 'package:simple_date_range_picker/src/selection_type.dart';
+import 'package:simple_date_range_picker/src/date_selection_type.dart';
 import 'package:simple_date_range_picker/src/widgets/date_item.dart';
 import 'package:simple_date_range_picker/src/style/simple_date_range_picker_style.dart';
 
@@ -95,23 +95,23 @@ class MonthGrid extends StatelessWidget {
     return date;
   }
 
-  SelectionType _getSelectionType(DateTime date) {
+  DateSelectionType _getSelectionType(DateTime date) {
     if (!selectedDates.contains(date)) {
-      return SelectionType.none;
+      return DateSelectionType.none;
     }
 
     if (selectedDates.length == 1 && selectedDates.first == date) {
-      return SelectionType.single;
+      return DateSelectionType.single;
     }
 
     if (selectedDates.isNotEmpty && selectedDates.first == date) {
-      return SelectionType.start;
+      return DateSelectionType.start;
     }
 
     if (selectedDates.isNotEmpty && selectedDates.last == date) {
-      return SelectionType.end;
+      return DateSelectionType.end;
     }
 
-    return SelectionType.middle;
+    return DateSelectionType.middle;
   }
 }
