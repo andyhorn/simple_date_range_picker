@@ -118,7 +118,7 @@ class MonthGrid extends StatelessWidget {
 
           return DateSelectionType.middle;
         }(),
-      SimpleDateRangePickerSingle() => DateSelectionType.start,
+      SimpleDateRangePickerSingle() => DateSelectionType.single,
     };
   }
 }
