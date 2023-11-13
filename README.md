@@ -6,7 +6,7 @@ A simple, stylish `DateTimeRange` picker component for Flutter.
 
 ## Features
 
-* In-line widget for selecting a range of dates (`DateTimeRange`)
+* In-line widget for selecting a range of dates (`DateTimeRange`) or a single date (`DateTime`)
 * `showSimpleDateRangePickerDialog` method to easily display the picker in a dialog
 * Highly customizable colors, borders, and TextStyles
 
@@ -18,7 +18,7 @@ Install the package by adding it to your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  simple_date_range_picker: ^0.0.3
+  simple_date_range_picker: ^0.0.4
 ```
 
 ## Usage
@@ -33,7 +33,10 @@ Use the `SimpleDateRangePicker` widget to display the picker as an in-line widge
 
 ```dart
 SimpleDateRangePicker(
-  onChanged: (dateRange) => setState(() => selectedDates = dateRange),
+  config: SimpleDateRangePickerRange(
+    initialDateRange: null,
+    onChanged: (dateRange) => setState(() => selectedDates = dateRange),
+  ),
 ),
 ```
 
@@ -44,6 +47,42 @@ final dateRange = await showSimpleDateRangePickerDialog(context);
 ```
 
 ### Customization
+
+#### Behavior
+
+The behavior of the picker is configurable using one of two config classes:
+
+##### Date range
+
+To select a date range, use the `SimpleDateRangePickerRange` config class.
+
+```dart
+  SimpleDateRangePicker(
+    config: SimpleDateRangePickerRange(
+      initialDateRange: null,
+      onChanged: (dateRange) => setState(() => selectedDates = dateRange),
+    ),
+  ),
+```
+
+In this example, the `onChanged` method will return a `DateTimeRange?` value.
+
+##### Single date
+
+To select a single date, use the `SimpleDateRangePickerSingle` config class.
+
+```dart
+  SimpleDateRangePicker(
+    config: SimpleDateRangePickerSingle(
+      initialDate: null,
+      onChanged: (date) => setState(() => selectedDate = date),
+    ),
+  ),
+```
+
+In this example, the `onChanged` method will return a `DateTime?` value.
+
+#### Styles
 
 The `SimpleDateRangePicker` exposes a styling API that uses the `SimpleDateRangePickerStyle` and the `SimpleDateRangePickerColors` classes.
 
@@ -65,7 +104,7 @@ This class determines the background and foreground colors of the selected dates
   * `hoveredOpacity` - the opacity of the date actively hovered over by the user
   * `selectedOpacity` - the opacity of all other dates in the selected range
 
-By default, `hoveredOpacity > boundaryOpacity > selectedOpacity`.
+By default, `hoveredOpacity > boundaryOpacity > selectedOpacity`, but this is entirely up to you.
 
 The `SimpleDateRangePickerStyle` contains the colors, as well as other styles for the picker:
 
@@ -94,7 +133,10 @@ SimpleDateRangePicker(
     ),
     activeItemRadius: Radius.zero,
   ),
-  onChanged: (dateRange) => setState(() => selectedDates = dateRange),
+  config: SimpleDateRangePickerRange(
+    initialDateRange: null,
+    onChanged: (dateRange) => setState(() => selectedDates = dateRange),
+  ),
 ),
 ```
 
@@ -104,5 +146,6 @@ Additional features planned for the future include:
 
 * ~~Customizable colors, borders, and TextStyles for the picker~~
 * ~~Customizable colors, border, TextStyles, and buttons for the dialog~~
+* ~~Single date selection~~
 * Date validation - determine which dates are selectable
 * Custom initial month view - specify which month to display first
