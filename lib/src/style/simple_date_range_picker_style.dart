@@ -9,6 +9,8 @@ class SimpleDateRangePickerStyle {
     this.weekdayTextStyle,
     this.dayTextStyle,
     this.activeItemRadius,
+    this.nextIconButtonStyle,
+    this.previousIconButtonStyle,
   });
 
   factory SimpleDateRangePickerStyle.defaults(BuildContext context) {
@@ -26,4 +28,6 @@ class SimpleDateRangePickerStyle {
   final TextStyle? weekdayTextStyle;
   final TextStyle? dayTextStyle;
   final Radius? activeItemRadius;
+  final ButtonStyle? nextIconButtonStyle;
+  final ButtonStyle? previousIconButtonStyle;
 }

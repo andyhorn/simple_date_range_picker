@@ -113,6 +113,16 @@ class _DemoPageState extends State<DemoPage> {
                       fontSize: 22,
                     ),
                     activeItemRadius: const Radius.circular(12.0),
+                    previousIconButtonStyle: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        const RoundedRectangleBorder(),
+                      ),
+                    ),
+                    nextIconButtonStyle: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        const RoundedRectangleBorder(),
+                      ),
+                    ),
                   ),
                   cancelLabel: 'Discard',
                   confirmLabel: 'Save',

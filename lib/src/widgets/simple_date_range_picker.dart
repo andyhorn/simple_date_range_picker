@@ -81,6 +81,7 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
+                style: widget.style?.previousIconButtonStyle,
                 icon: const Icon(Icons.chevron_left),
                 onPressed: () => _moveToPreviousMonth(),
               ),
@@ -89,6 +90,7 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
                 textStyle: widget.style?.monthTitleTextStyle,
               ),
               IconButton(
+                style: widget.style?.nextIconButtonStyle,
                 icon: const Icon(Icons.chevron_right),
                 onPressed: () => _moveToNextMonth(),
               ),
