@@ -8,7 +8,7 @@ A simple, stylish `DateTimeRange` picker component for Flutter.
 * `showSimpleDateRangePickerDialog` method to easily display the picker in a dialog
 * Highly customizable colors, borders, and TextStyles
 
-![Date range picker with a date range selected](documentation/images/date_range_picker_selected.png)
+![Date range picker with a date range selected](https://github.com/andyhorn/simple_date_range_picker/raw/main/documentation/images/date_range_picker_selected.png)
 
 ## Getting started
 
