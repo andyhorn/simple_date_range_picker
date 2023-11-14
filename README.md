@@ -120,9 +120,9 @@ class SimpleDateRangePickerStyle {
 }
 ```
 
-Using this class, you can customize the style of almost every component within te picker.
+Using this class, you can customize the style of almost every component within the picker.
 
-For example, to change the background color of the picker to red, the foreground color to white, and selected date border radius to zero:
+For example, to change the background color of the picker to red, the foreground color to white, and the selected-date border radius to zero:
 
 ```dart
 SimpleDateRangePicker(
