@@ -1,3 +1,7 @@
+## 0.0.6
+
+Attempt to fix release workflow file (again).
+
 ## 0.0.5
 
 Add a `showSimpleDatePickerDialog` function for selecting a single date in a dialog.
