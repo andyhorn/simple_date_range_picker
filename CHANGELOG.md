@@ -1,3 +1,7 @@
+## 0.0.7
+
+Fix an overflow issue only appearing in tests.
+
 ## 0.0.6
 
 Attempt to fix release workflow file (again).
