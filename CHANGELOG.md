@@ -1,3 +1,7 @@
+## 0.0.5
+
+Add a `showSimpleDatePickerDialog` function for selecting a single date in a dialog.
+
 ## 0.0.4
 
 Add behavior customization API.

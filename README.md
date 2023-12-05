@@ -6,8 +6,7 @@ A simple, stylish `DateTimeRange` picker component for Flutter.
 
 ## Features
 
-* In-line widget for selecting a range of dates (`DateTimeRange`) or a single date (`DateTime`)
-* `showSimpleDateRangePickerDialog` method to easily display the picker in a dialog
+* In-line widgets and dialogs for selecting a range of dates (`DateTimeRange`) or a single date (`DateTime`)
 * Highly customizable colors, borders, and TextStyles
 
 ![Date range picker with a date range selected](https://github.com/andyhorn/simple_date_range_picker/raw/main/documentation/images/date_range_picker_selected.png)
@@ -18,10 +17,12 @@ Install the package by adding it to your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  simple_date_range_picker: ^0.0.4
+  simple_date_range_picker: ^0.0.5
 ```
 
 ## Usage
+
+### Import
 
 Import the package into your project:
 
@@ -29,7 +30,11 @@ Import the package into your project:
 import 'package:simple_date_range_picker/simple_date_range_picker.dart';
 ```
 
+### Picker Widget
+
 Use the `SimpleDateRangePicker` widget to display the picker as an in-line widget:
+
+Use the `config` property to control the behavior of the widget. To select a `DateTimeRange`, use the `SimpleDateRangePickerRange` config class:
 
 ```dart
 SimpleDateRangePicker(
@@ -40,51 +45,40 @@ SimpleDateRangePicker(
 ),
 ```
 
-Or, use `showSimpleDateRangePickerDialog` to display the picker as a modal dialog:
+To select a single `DateTime` value, use the `SimpleDateRangePickerSingle` config class:
+
+```dart
+SimpleDateRangePicker(
+  config: SimpleDateRangePickerSingle(
+    initialDate: null,
+    onChanged: (date) => setState(() => selectedDate = date),
+  ),
+),
+```
+
+### Picker Dialog
+
+Or, you can show the picker in a dialog.
+
+To select a DateTimeRange, use `showSimpleDateRangePickerDialog`:
 
 ```dart
 final dateRange = await showSimpleDateRangePickerDialog(context);
 ```
 
+To select a single DateTime, use `showSimpleDatePickerDialog`:
+
+```dart
+final date = await showSimpleDatePickerDialog(context);
+```
+
 ### Customization
-
-#### Behavior
-
-The behavior of the picker is configurable using one of two config classes:
-
-##### Date range
-
-To select a date range, use the `SimpleDateRangePickerRange` config class.
-
-```dart
-  SimpleDateRangePicker(
-    config: SimpleDateRangePickerRange(
-      initialDateRange: null,
-      onChanged: (dateRange) => setState(() => selectedDates = dateRange),
-    ),
-  ),
-```
-
-In this example, the `onChanged` method will return a `DateTimeRange?` value.
-
-##### Single date
-
-To select a single date, use the `SimpleDateRangePickerSingle` config class.
-
-```dart
-  SimpleDateRangePicker(
-    config: SimpleDateRangePickerSingle(
-      initialDate: null,
-      onChanged: (date) => setState(() => selectedDate = date),
-    ),
-  ),
-```
-
-In this example, the `onChanged` method will return a `DateTime?` value.
 
 #### Styles
 
-The `SimpleDateRangePicker` exposes a styling API that uses the `SimpleDateRangePickerStyle` and the `SimpleDateRangePickerColors` classes.
+Aside from a config class for changing the picker's behavior, most of the styles, labels, colors, etc are customizable.
+
+The `SimpleDateRangePicker` widget exposes a styling API that uses the `SimpleDateRangePickerStyle` and the `SimpleDateRangePickerColors` classes.
 
 ```dart
 class SimpleDateRangePickerColors {
