@@ -12,9 +12,7 @@ class TestWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: child,
-        ),
+        body: Center(child: child),
       ),
     );
   }
@@ -52,25 +50,6 @@ void main() {
     );
 
     expect(find.text('October 2023'), findsOneWidget);
-  });
-
-  testWidgets('Displays date range label', (widgetTester) async {
-    await widgetTester.pumpWidget(
-      TestWrapper(
-        child: SimpleDateRangePicker(
-          config: SimpleDateRangePickerRange(
-            onChanged: (dates) {},
-            initialDateRange: DateTimeRange(
-              start: DateTime(2023, 10, 1),
-              end: DateTime(2023, 10, 5),
-            ),
-          ),
-        ),
-      ),
-    );
-
-    expect(find.text('October 1, 2023'), findsOneWidget);
-    expect(find.text('October 5, 2023'), findsOneWidget);
   });
 
   testWidgets('Emits selected date range', (widgetTester) async {

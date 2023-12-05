@@ -58,9 +58,12 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        SizedBox(
-          width: widget.width,
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: widget.width,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -69,9 +72,13 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
                 icon: const Icon(Icons.chevron_left),
                 onPressed: () => _moveToPreviousMonth(),
               ),
-              MonthTitle(
-                month: currentMonth,
-                textStyle: widget.style?.monthTitleTextStyle,
+              Expanded(
+                child: Center(
+                  child: MonthTitle(
+                    month: currentMonth,
+                    textStyle: widget.style?.monthTitleTextStyle,
+                  ),
+                ),
               ),
               IconButton(
                 style: widget.style?.nextIconButtonStyle,
