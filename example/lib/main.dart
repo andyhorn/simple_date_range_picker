@@ -48,6 +48,16 @@ class _DemoPageState extends State<DemoPage> {
               }
             },
           ),
+          ElevatedButton(
+            child: const Text('showSimpleDatePickerDialog'),
+            onPressed: () async {
+              final newDate = await showSimpleDatePickerDialog(context);
+
+              if (newDate != null) {
+                setState(() => selectedDate = newDate);
+              }
+            },
+          ),
         ],
       ),
       body: SizedBox(
@@ -118,7 +128,7 @@ class _DemoPageState extends State<DemoPage> {
                               const Text('No single date selected'),
                             ] else ...[
                               Text(
-                                'Selected Date: ${DateFormat.yMMMd().format(selectedDate!)}}',
+                                'Selected Date: ${DateFormat.yMMMd().format(selectedDate!)}',
                               ),
                             ],
                             const SizedBox(height: 50),
