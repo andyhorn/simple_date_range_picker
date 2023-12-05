@@ -6,6 +6,7 @@ Future<DateTimeRange?> showSimpleDateRangePickerDialog(
   BuildContext context, {
   DateTimeRange? initialDateRange,
   SimpleDateRangePickerStyle? style,
+  SimpleDateRangePickerConfig? config,
   Color? backgroundColor,
   ShapeBorder? shape,
   ButtonStyle? cancelButtonStyle,
@@ -30,10 +31,11 @@ Future<DateTimeRange?> showSimpleDateRangePickerDialog(
               mainAxisSize: MainAxisSize.min,
               children: [
                 SimpleDateRangePicker(
-                  config: SimpleDateRangePickerRange(
-                    onChanged: (dates) => dateRange = dates,
-                    initialDateRange: initialDateRange,
-                  ),
+                  config: config ??
+                      SimpleDateRangePickerRange(
+                        onChanged: (dates) => dateRange = dates,
+                        initialDateRange: initialDateRange,
+                      ),
                   style: style,
                 ),
                 const SizedBox(height: 25),
