@@ -1,3 +1,7 @@
+## 0.0.8
+
+Fix a bug in the initial date detection and display logic.
+
 ## 0.0.7
 
 Fix an overflow issue only appearing in tests.
