@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:simple_date_range_picker/simple_date_range_picker.dart';
 import 'package:simple_date_range_picker/src/constants/constants.dart';
 import 'package:simple_date_range_picker/src/date_selection_type.dart';
+import 'package:simple_date_range_picker/src/extensions/date_time_extensions.dart';
 import 'package:simple_date_range_picker/src/widgets/date_item.dart';
 
 class MonthGrid extends StatelessWidget {
@@ -67,7 +68,7 @@ class MonthGrid extends StatelessWidget {
 
           return DateItem(
             date: calendarDate,
-            selected: selectedDates.contains(calendarDate),
+            selected: selectedDates.any(calendarDate.isSameDate),
             onSelected: () => onSelected(calendarDate),
             type: _getSelectionType(calendarDate),
             style: style,
@@ -98,27 +99,34 @@ class MonthGrid extends StatelessWidget {
   }
 
   DateSelectionType _getSelectionType(DateTime date) {
-    if (!selectedDates.contains(date)) {
+    if (!selectedDates.any(date.isSameDate)) {
       return DateSelectionType.none;
     }
 
-    return switch (config) {
-      SimpleDateRangePickerRange() => () {
-          if (selectedDates.length == 1 && selectedDates.first == date) {
+    switch (config) {
+      case SimpleDateRangePickerRange():
+        final isFirst = selectedDates.first.isSameDate(date);
+        final isLast = selectedDates.last.isSameDate(date);
+
+        if (isFirst) {
+          if (selectedDates.length == 1) {
             return DateSelectionType.single;
           }
 
-          if (selectedDates.isNotEmpty && selectedDates.first == date) {
+          if (selectedDates.isNotEmpty) {
             return DateSelectionType.start;
           }
+        }
 
-          if (selectedDates.isNotEmpty && selectedDates.last == date) {
+        if (isLast) {
+          if (selectedDates.isNotEmpty) {
             return DateSelectionType.end;
           }
+        }
 
-          return DateSelectionType.middle;
-        }(),
-      SimpleDateRangePickerSingle() => DateSelectionType.single,
-    };
+        return DateSelectionType.middle;
+      case SimpleDateRangePickerSingle():
+        return DateSelectionType.single;
+    }
   }
 }

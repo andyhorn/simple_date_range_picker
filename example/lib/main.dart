@@ -41,7 +41,10 @@ class _DemoPageState extends State<DemoPage> {
           ElevatedButton(
             child: const Text('showSimpleDateRangePickerDialog'),
             onPressed: () async {
-              final newDates = await showSimpleDateRangePickerDialog(context);
+              final newDates = await showSimpleDateRangePickerDialog(
+                context,
+                initialDateRange: selectedDateRange,
+              );
 
               if (newDates != null) {
                 setState(() => selectedDateRange = newDates);
@@ -51,7 +54,10 @@ class _DemoPageState extends State<DemoPage> {
           ElevatedButton(
             child: const Text('showSimpleDatePickerDialog'),
             onPressed: () async {
-              final newDate = await showSimpleDatePickerDialog(context);
+              final newDate = await showSimpleDatePickerDialog(
+                context,
+                initialDate: selectedDate ?? DateTime.now(),
+              );
 
               if (newDate != null) {
                 setState(() => selectedDate = newDate);
