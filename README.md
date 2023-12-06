@@ -17,7 +17,7 @@ Install the package by adding it to your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  simple_date_range_picker: ^0.0.5
+  simple_date_range_picker: latest version
 ```
 
 ## Usage
