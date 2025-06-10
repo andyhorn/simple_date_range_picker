@@ -1,3 +1,7 @@
+## 1.0.1
+
+Fix linter warnings after Flutter upgrade
+
 ## 1.0.0
 
 Stable release!
