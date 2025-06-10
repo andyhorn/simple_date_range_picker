@@ -11,10 +11,12 @@ class DateItem extends StatefulWidget {
     required this.type,
     required this.onSelected,
     this.style,
+    this.canSelect = true,
   });
 
   final DateTime date;
   final bool selected;
+  final bool canSelect;
   final DateSelectionType type;
   final VoidCallback onSelected;
   final SimpleDateRangePickerStyle? style;
@@ -44,7 +46,7 @@ class _DateItemState extends State<DateItem> {
         onEnter: (_) => setState(() => hovered = true),
         onExit: (_) => setState(() => hovered = false),
         child: GestureDetector(
-          onTap: () => widget.onSelected(),
+          onTap: widget.canSelect ? () => widget.onSelected() : null,
           child: DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.horizontal(

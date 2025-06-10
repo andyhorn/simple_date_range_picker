@@ -92,9 +92,7 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
         MonthGrid(
           maxWidth: widget.width,
           month: currentMonth,
-          selectedDates: {
-            ...config.dates,
-          }.toList(),
+          selectedDates: config.dates.toSet().toList(),
           onSelected: _onSelected,
           style: widget.style,
           config: config,

@@ -72,6 +72,7 @@ class MonthGrid extends StatelessWidget {
             onSelected: () => onSelected(calendarDate),
             type: _getSelectionType(calendarDate),
             style: style,
+            canSelect: config.enabledDatePredicate?.call(calendarDate) ?? true,
           );
         },
         itemCount: _getItemCount(),

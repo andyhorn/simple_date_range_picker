@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 
 sealed class SimpleDateRangePickerConfig {
-  const SimpleDateRangePickerConfig();
+  const SimpleDateRangePickerConfig({
+    this.enabledDatePredicate,
+  });
 
   List<DateTime> get dates;
   void onSelected(DateTime date);
+
+  final bool Function(DateTime date)? enabledDatePredicate;
 }
 
 class SimpleDateRangePickerRange extends SimpleDateRangePickerConfig {
   SimpleDateRangePickerRange({
     required this.initialDateRange,
     required this.onChanged,
+    super.enabledDatePredicate,
   })  : _startDate = initialDateRange?.start,
         _endDate = initialDateRange?.end;
 
@@ -89,6 +94,7 @@ class SimpleDateRangePickerSingle extends SimpleDateRangePickerConfig {
   SimpleDateRangePickerSingle({
     required this.initialDate,
     required this.onChanged,
+    super.enabledDatePredicate,
   }) : _selectedDate = initialDate;
 
   final DateTime? initialDate;
