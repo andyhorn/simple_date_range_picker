@@ -161,6 +161,5 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
 
         break;
     }
-    ;
   }
 }

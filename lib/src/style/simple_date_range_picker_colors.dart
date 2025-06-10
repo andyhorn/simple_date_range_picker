@@ -35,7 +35,8 @@ class SimpleDateRangePickerColors {
       return null;
     }
 
-    return backgroundColor.withOpacity(_getOpacity(
+    return backgroundColor.withValues(
+        alpha: _getOpacity(
       isHovered: isHovered,
       isSelected: isSelected,
       isStartOrEndDate: isStartOrEndDate,

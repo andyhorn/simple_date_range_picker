@@ -147,7 +147,7 @@ class _SimpleDateRangePickerDialog extends StatelessWidget {
             children: [
               picker,
               const SizedBox(height: 25),
-              ButtonBar(
+              OverflowBar(
                 children: [
                   ElevatedButton(
                     style: cancelButtonStyle,
