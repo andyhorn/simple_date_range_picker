@@ -21,37 +21,35 @@ class SimpleDateRangePicker extends StatefulWidget {
 }
 
 class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
-  late final config = widget.config;
+  late var config = widget.config;
   late DateTime currentMonth;
 
   @override
   void initState() {
     super.initState();
 
-    return switch (config) {
-      SimpleDateRangePickerRange(:final initialDateRange) => () {
-          if (initialDateRange != null) {
-            currentMonth = DateTime(
-              initialDateRange.start.year,
-              initialDateRange.start.month,
-              1,
-            );
-          } else {
-            currentMonth = DateTime.now();
-          }
-        }(),
-      SimpleDateRangePickerSingle(:final initialDate) => () {
-          if (initialDate != null) {
-            currentMonth = DateTime(
-              initialDate.year,
-              initialDate.month,
-              1,
-            );
-          } else {
-            currentMonth = DateTime.now();
-          }
-        }(),
-    };
+    _setCurrentMonthFromConfig(config);
+  }
+
+  @override
+  void didUpdateWidget(SimpleDateRangePicker oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    var didUpdate = false;
+
+    if (oldWidget.config != widget.config) {
+      config = widget.config;
+      _setCurrentMonthFromConfig(widget.config);
+      didUpdate = true;
+    }
+
+    if (oldWidget.style != widget.style) {
+      didUpdate = true;
+    }
+
+    if (didUpdate) {
+      setState(() {});
+    }
   }
 
   @override
@@ -95,7 +93,7 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
           selectedDates: config.dates.toSet().toList(),
           onSelected: _onSelected,
           style: widget.style,
-          config: config,
+          config: widget.config,
         ),
       ],
     );
@@ -124,5 +122,45 @@ class _SimpleDateRangePickerState extends State<SimpleDateRangePicker> {
   void _onSelected(DateTime date) {
     config.onSelected(date);
     setState(() {});
+  }
+
+  void _setCurrentMonthFromConfig(SimpleDateRangePickerConfig config) {
+    switch (config) {
+      case SimpleDateRangePickerRange(:final initialDateRange):
+        if (initialDateRange != null) {
+          currentMonth = DateTime(
+            initialDateRange.start.year,
+            initialDateRange.start.month,
+            1,
+          );
+        } else {
+          currentMonth = DateTime.now();
+        }
+        break;
+      case SimpleDateRangePickerSingle(:final initialDate):
+        if (initialDate != null) {
+          currentMonth = DateTime(
+            initialDate.year,
+            initialDate.month,
+            1,
+          );
+        } else {
+          currentMonth = DateTime.now();
+        }
+        break;
+      case SimpleDateRangePickerMulti(:final initialDates):
+        if (initialDates?.isNotEmpty ?? false) {
+          currentMonth = DateTime(
+            initialDates!.first.year,
+            initialDates.first.month,
+            1,
+          );
+        } else {
+          currentMonth = DateTime.now();
+        }
+
+        break;
+    }
+    ;
   }
 }

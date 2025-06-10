@@ -39,6 +39,42 @@ Future<DateTimeRange?> showSimpleDateRangePickerDialog(
   );
 }
 
+Future<List<DateTime>?> showSimpleMultiDatePickerDialog(
+  BuildContext context, {
+  List<DateTime>? initialDates,
+  SimpleDateRangePickerStyle? style,
+  Color? backgroundColor,
+  ShapeBorder? shape,
+  ButtonStyle? cancelButtonStyle,
+  ButtonStyle? confirmButtonStyle,
+  String cancelLabel = 'Cancel',
+  String confirmLabel = 'OK',
+}) async {
+  return await showDialog(
+    context: context,
+    builder: (context) {
+      List<DateTime>? dates;
+
+      return _SimpleDateRangePickerDialog(
+        picker: SimpleDateRangePicker(
+          config: SimpleDateRangePickerMulti(
+            onChanged: (value) => dates = value,
+            initialDates: initialDates,
+          ),
+          style: style,
+        ),
+        shape: shape,
+        cancelButtonStyle: cancelButtonStyle,
+        confirmButtonStyle: confirmButtonStyle,
+        cancelLabel: cancelLabel,
+        confirmLabel: confirmLabel,
+        backgroundColor: backgroundColor,
+        onSave: () => Navigator.pop(context, dates),
+      );
+    },
+  );
+}
+
 Future<DateTime?> showSimpleDatePickerDialog(
   BuildContext context, {
   DateTime? initialDate,

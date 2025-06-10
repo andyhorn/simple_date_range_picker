@@ -32,6 +32,7 @@ class DemoPage extends StatefulWidget {
 class _DemoPageState extends State<DemoPage> {
   DateTimeRange? selectedDateRange;
   DateTime? selectedDate;
+  List<DateTime>? selectedDates;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +49,19 @@ class _DemoPageState extends State<DemoPage> {
 
               if (newDates != null) {
                 setState(() => selectedDateRange = newDates);
+              }
+            },
+          ),
+          ElevatedButton(
+            child: const Text('showSimpleMultiDateRangePickerDialog'),
+            onPressed: () async {
+              final newDates = await showSimpleMultiDatePickerDialog(
+                context,
+                initialDates: selectedDates,
+              );
+
+              if (newDates != null) {
+                setState(() => selectedDates = newDates);
               }
             },
           ),
@@ -100,9 +114,48 @@ class _DemoPageState extends State<DemoPage> {
                             const SizedBox(height: 50),
                             SimpleDateRangePicker(
                               config: SimpleDateRangePickerRange(
-                                initialDateRange: null,
+                                initialDateRange: selectedDateRange,
                                 onChanged: (dates) => setState(
                                   () => selectedDateRange = dates,
+                                ),
+                              ),
+                              style: const SimpleDateRangePickerStyle(
+                                colors: SimpleDateRangePickerColors(
+                                  backgroundColor: Colors.pink,
+                                  foregroundColor: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Text(
+                              'In-line multi date range picker',
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 25),
+                            if (selectedDates?.isEmpty ?? true) ...[
+                              const Text('No dates range selected'),
+                            ] else ...[
+                              Text(
+                                  'Selected dates: ${selectedDates!.map(DateFormat('M/d/yy').format).join(', ')}'),
+                            ],
+                            const SizedBox(height: 50),
+                            SimpleDateRangePicker(
+                              config: SimpleDateRangePickerMulti(
+                                initialDates: selectedDates,
+                                onChanged: (dates) => setState(
+                                  () => selectedDates = dates,
                                 ),
                               ),
                               style: const SimpleDateRangePickerStyle(
@@ -140,7 +193,7 @@ class _DemoPageState extends State<DemoPage> {
                             const SizedBox(height: 50),
                             SimpleDateRangePicker(
                               config: SimpleDateRangePickerSingle(
-                                initialDate: null,
+                                initialDate: selectedDate,
                                 onChanged: (date) => setState(
                                   () => selectedDate = date,
                                 ),

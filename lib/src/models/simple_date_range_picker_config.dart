@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 
 sealed class SimpleDateRangePickerConfig {
@@ -87,6 +89,32 @@ class SimpleDateRangePickerRange extends SimpleDateRangePickerConfig {
 
     dates.add(_endDate!);
     return dates;
+  }
+}
+
+class SimpleDateRangePickerMulti extends SimpleDateRangePickerConfig {
+  SimpleDateRangePickerMulti({
+    super.enabledDatePredicate,
+    required this.onChanged,
+    this.initialDates,
+  }) : _dates = [...initialDates ?? []];
+
+  final List<DateTime>? initialDates;
+  final ValueChanged<List<DateTime>> onChanged;
+  final List<DateTime> _dates;
+
+  @override
+  List<DateTime> get dates => UnmodifiableListView(_dates);
+
+  @override
+  void onSelected(DateTime date) {
+    if (_dates.contains(date)) {
+      _dates.remove(date);
+    } else {
+      _dates.add(date);
+    }
+
+    onChanged(_dates);
   }
 }
 
