@@ -1,3 +1,9 @@
+## 1.0.0
+
+Stable release!
+Added a multi-day picker config and launcher function.
+Added the ability to "disable" a day from selection.
+
 ## 0.0.8
 
 Fix a bug in the initial date detection and display logic.
